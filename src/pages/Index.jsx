@@ -2,42 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-
-const products = [
-  {
-    id: 1,
-    name: 'YouTube Premium',
-    description: 'Xem video không quảng cáo, tải xuống và phát trong nền',
-    options: [
-      { duration: '1 tháng', price: 50000 },
-      { duration: '6 tháng', price: 270000 },
-      { duration: '12 tháng', price: 500000 },
-    ],
-    image: '/placeholder.svg'
-  },
-  {
-    id: 2,
-    name: 'Spotify Premium',
-    description: 'Nghe nhạc không quảng cáo, tải xuống và chất lượng cao',
-    options: [
-      { duration: '1 tháng', price: 40000 },
-      { duration: '6 tháng', price: 220000 },
-      { duration: '12 tháng', price: 400000 },
-    ],
-    image: '/placeholder.svg'
-  },
-  {
-    id: 3,
-    name: 'Netflix Premium',
-    description: 'Xem phim và series TV không giới hạn',
-    options: [
-      { duration: '1 tháng', price: 180000 },
-      { duration: '6 tháng', price: 1000000 },
-      { duration: '12 tháng', price: 1800000 },
-    ],
-    image: '/placeholder.svg'
-  },
-];
+import { products } from '../data/products';
 
 const Index = () => {
   return (
