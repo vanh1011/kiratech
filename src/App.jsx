@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { navItems } from "./nav-items";
 import ProductDetail from "./pages/ProductDetail";
 import CartPage from "./pages/CartPage";
+import PaymentInfo from "./pages/PaymentInfo";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ const App = () => (
           ))}
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/payment-info" element={<PaymentInfo />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
