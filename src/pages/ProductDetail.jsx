@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button";
 import { products } from '../data/products';
 import Header from '../components/Header';
-import Cart from '../components/Cart';
+import Footer from '../components/Footer';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -55,9 +55,9 @@ const ProductDetail = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <div className="container mx-auto px-4 py-8">
+      <main className="flex-grow container mx-auto px-4 py-8">
         <Link to="/" className="text-blue-500 hover:underline mb-4 inline-block">&larr; Quay lại trang chủ</Link>
         <Card>
           <CardHeader>
@@ -93,10 +93,8 @@ const ProductDetail = () => {
             </Button>
           </CardFooter>
         </Card>
-        <div className="mt-8">
-          <Cart />
-        </div>
-      </div>
+      </main>
+      <Footer />
     </div>
   );
 };

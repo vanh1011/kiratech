@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button";
 import { products } from '../data/products';
 import Header from '../components/Header';
-import Cart from '../components/Cart';
+import Footer from '../components/Footer';
 
 const Index = () => {
   const [selectedOptions, setSelectedOptions] = useState({});
@@ -54,9 +54,9 @@ const Index = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <div className="container mx-auto px-4 py-8">
+      <main className="flex-grow container mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold mb-8 text-center">Dịch vụ Premium</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product) => (
@@ -96,10 +96,8 @@ const Index = () => {
             </Card>
           ))}
         </div>
-        <div className="mt-8">
-          <Cart />
-        </div>
-      </div>
+      </main>
+      <Footer />
     </div>
   );
 };
