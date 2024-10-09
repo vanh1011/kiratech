@@ -1,18 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { products } from '../data/products';
 import Header from '../components/Header';
+import Cart from '../components/Cart';
 
 const Index = () => {
   const [selectedOptions, setSelectedOptions] = useState({});
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+      setCartItems(JSON.parse(savedCart));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const handleOptionSelect = (productId, option) => {
     setSelectedOptions(prev => ({
       ...prev,
       [productId]: option
     }));
+  };
+
+  const addToCart = (product, option) => {
+    const newItem = {
+      productId: product.id,
+      name: product.name,
+      duration: option.duration,
+      price: option.price,
+      quantity: 1,
+      optionIndex: product.options.indexOf(option)
+    };
+
+    setCartItems(prevItems => {
+      const existingItemIndex = prevItems.findIndex(
+        item => item.productId === newItem.productId && item.duration === newItem.duration
+      );
+
+      if (existingItemIndex > -1) {
+        return prevItems.map((item, index) => 
+          index === existingItemIndex ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      } else {
+        return [...prevItems, newItem];
+      }
+    });
   };
 
   return (
@@ -47,7 +85,7 @@ const Index = () => {
                 <Button
                   className="w-1/2"
                   disabled={!selectedOptions[product.id]}
-                  onClick={() => alert('Chức năng thêm vào giỏ hàng chưa được triển khai')}
+                  onClick={() => addToCart(product, selectedOptions[product.id])}
                 >
                   Thêm vào giỏ hàng
                 </Button>
@@ -57,6 +95,9 @@ const Index = () => {
               </CardFooter>
             </Card>
           ))}
+        </div>
+        <div className="mt-8">
+          <Cart />
         </div>
       </div>
     </div>
