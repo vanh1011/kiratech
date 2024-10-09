@@ -13,7 +13,7 @@ const Footer = () => {
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">
               <Instagram className="h-6 w-6" />
             </a>
-            <a href="https://zalo.me" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">
+            <a href="https://zalo.me/0945988937" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">
               <span className="font-bold">Zalo</span>
             </a>
           </div>
