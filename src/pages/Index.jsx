@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -60,8 +61,11 @@ const Index = () => {
                 ))}
               </div>
             </CardContent>
-            <CardFooter>
-              <Button className="w-full">Thêm vào giỏ hàng</Button>
+            <CardFooter className="flex justify-between">
+              <Button className="w-1/2">Thêm vào giỏ hàng</Button>
+              <Link to={`/product/${product.id}`} className="w-1/2 ml-2">
+                <Button variant="outline" className="w-full">Xem chi tiết</Button>
+              </Link>
             </CardFooter>
           </Card>
         ))}
