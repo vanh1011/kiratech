@@ -5,17 +5,26 @@ import Footer from '../components/Footer';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Facebook, Phone, MessageCircle } from 'lucide-react';
+import { Facebook, Phone, MessageCircle, Copy } from 'lucide-react';
+import { toast } from 'sonner';
 
 const CartPage = () => {
   const [email, setEmail] = useState('');
   const [zaloPhone, setZaloPhone] = useState('');
   const [address, setAddress] = useState('');
+  const [showContactInfo, setShowContactInfo] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Xử lý thanh toán ở đây
     console.log('Thanh toán với:', { email, zaloPhone, address });
+    setShowContactInfo(true);
+  };
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(() => {
+      toast.success('Đã sao chép vào clipboard');
+    });
   };
 
   return (
@@ -64,9 +73,27 @@ const CartPage = () => {
           <div>
             <h2 className="text-2xl font-bold mb-4">Thông tin chuyển khoản</h2>
             <div className="space-y-2">
-              <p><strong>Số điện thoại:</strong> 0945988937</p>
-              <p><strong>Ngân hàng:</strong> Timo</p>
-              <p><strong>Chủ tài khoản:</strong> Hồ Việt Anh</p>
+              <p className="flex items-center">
+                <strong>Số điện thoại:</strong>
+                <span className="ml-2">0945988937</span>
+                <Button variant="ghost" size="icon" onClick={() => copyToClipboard('0945988937')}>
+                  <Copy className="h-4 w-4" />
+                </Button>
+              </p>
+              <p className="flex items-center">
+                <strong>Ngân hàng:</strong>
+                <span className="ml-2">Timo</span>
+                <Button variant="ghost" size="icon" onClick={() => copyToClipboard('Timo')}>
+                  <Copy className="h-4 w-4" />
+                </Button>
+              </p>
+              <p className="flex items-center">
+                <strong>Chủ tài khoản:</strong>
+                <span className="ml-2">Hồ Việt Anh</span>
+                <Button variant="ghost" size="icon" onClick={() => copyToClipboard('Hồ Việt Anh')}>
+                  <Copy className="h-4 w-4" />
+                </Button>
+              </p>
             </div>
             <div className="mt-4">
               <h3 className="text-xl font-semibold mb-2">Mã QR thanh toán</h3>
@@ -74,23 +101,25 @@ const CartPage = () => {
             </div>
           </div>
         </div>
-        <div className="mt-8">
-          <h2 className="text-2xl font-bold mb-4">Liên hệ sau khi thanh toán</h2>
-          <div className="flex space-x-4">
-            <a href="https://zalo.me/0945988937" target="_blank" rel="noopener noreferrer" className="flex items-center text-blue-600 hover:text-blue-800">
-              <MessageCircle className="mr-2" />
-              Zalo: 0945988937
-            </a>
-            <a href="https://wa.me/84945988937" target="_blank" rel="noopener noreferrer" className="flex items-center text-green-600 hover:text-green-800">
-              <MessageCircle className="mr-2" />
-              WhatsApp
-            </a>
-            <a href="https://www.facebook.com/KiraTech" target="_blank" rel="noopener noreferrer" className="flex items-center text-blue-600 hover:text-blue-800">
-              <Facebook className="mr-2" />
-              Facebook
-            </a>
+        {showContactInfo && (
+          <div className="mt-8">
+            <h2 className="text-2xl font-bold mb-4">Liên hệ sau khi thanh toán</h2>
+            <div className="flex space-x-4">
+              <a href="https://zalo.me/0945988937" target="_blank" rel="noopener noreferrer" className="flex items-center text-blue-600 hover:text-blue-800">
+                <MessageCircle className="mr-2" />
+                Zalo: 0945988937
+              </a>
+              <a href="https://wa.me/84945988937" target="_blank" rel="noopener noreferrer" className="flex items-center text-green-600 hover:text-green-800">
+                <MessageCircle className="mr-2" />
+                WhatsApp
+              </a>
+              <a href="https://www.facebook.com/KiraTech" target="_blank" rel="noopener noreferrer" className="flex items-center text-blue-600 hover:text-blue-800">
+                <Facebook className="mr-2" />
+                Facebook
+              </a>
+            </div>
           </div>
-        </div>
+        )}
       </main>
       <Footer />
     </div>
