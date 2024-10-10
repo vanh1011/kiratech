@@ -16,9 +16,31 @@ const PaymentInfo = () => {
     });
   };
 
-  const handleConfirmPayment = () => {
+  const handleConfirmPayment = async () => {
     setShowContactInfo(true);
     toast.success("Cảm ơn bạn đã xác nhận thanh toán!");
+
+    // Send notification to admin
+    try {
+      const response = await fetch('/api/notify-admin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: 'Có đơn hàng mới từ khách hàng',
+          adminEmail: 'kira10111907@gmail.com'
+        }),
+      });
+
+      if (response.ok) {
+        console.log('Admin notification sent successfully');
+      } else {
+        console.error('Failed to send admin notification');
+      }
+    } catch (error) {
+      console.error('Error sending admin notification:', error);
+    }
   };
 
   return (
@@ -66,7 +88,7 @@ const PaymentInfo = () => {
         <div className="mt-6 text-center">
           <h3 className="text-xl font-semibold mb-2">Mã QR thanh toán</h3>
           <img
-            src="../../public/images/QRtimo.jpg"
+            src="/images/QRtimo.jpg"
             alt="Mã QR thanh toán"
             className="max-w-80 h-auto mx-auto"
           />
