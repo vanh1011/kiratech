@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Header from '../components/Header';
-import Cart from '../components/Cart';
-import Footer from '../components/Footer';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
+import Cart from "../components/Cart";
+import Footer from "../components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 const CartPage = () => {
-  const [email, setEmail] = useState('');
-  const [zaloPhone, setZaloPhone] = useState('');
-  const [address, setAddress] = useState('');
+  const [email, setEmail] = useState("");
+  const [zaloPhone, setZaloPhone] = useState("");
+  const [address, setAddress] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Xử lý thanh toán ở đây
-    console.log('Thanh toán với:', { email, zaloPhone, address });
+    console.log("Thanh toán với:", { email, zaloPhone, address });
     // Chuyển hướng đến trang thông tin thanh toán
-    navigate('/payment-info');
+    navigate("/payment-info");
   };
 
   return (
